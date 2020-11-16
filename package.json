@@ -4,22 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/atomanyih/the-juice.git"
   },
-  "author": "",
+  "author": "atomanyih",
   "license": "AGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/atomanyih/the-juice/issues"
   },
   "homepage": "https://github.com/atomanyih/the-juice#readme",
   "dependencies": {
-    "d3": "^6.2.0"
+    "d3": "^6.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@types/d3": "^6.1.0"
+    "@types/d3": "^6.1.0",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^4.0.5"
   }
 }
