@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {csv, utcParse} from "d3";
+import {csv, timeParse} from "d3";
 import Graph from "./Graph";
 import {DSVRowString, DSVParsedArray} from "d3-dsv";
 
@@ -27,7 +27,7 @@ export type UsageEntry = {
 const parseData = (d : DSVRowString) : UsageEntry => {
   const usage = +(d["USAGE"] || 0);
   const dateString = `${d["DATE"]}T${d["START TIME"]}`;
-  const date = utcParse("%Y-%m-%dT%H:%M")(dateString);
+  const date = timeParse("%Y-%m-%dT%H:%M")(dateString);
   return {
     date: date ||  new Date(0), // this is whack
     usage: usage
