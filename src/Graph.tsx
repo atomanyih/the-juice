@@ -38,7 +38,8 @@ export default (props: { csvData: DSVParsedArray<UsageEntry> }) => {
 
     const svg = d3.create("svg")
       .attr("viewBox", `0 0 ${width} ${height}`)
-      .style("background", "white");
+      .style("background", "white")
+      .style("max-width", "954px");
 
     const [min, max] = d3.extent(hourlyData, d => d.usage);
     const color = d3.scaleSequential([0, max], d3.interpolateReds);
@@ -67,7 +68,7 @@ export default (props: { csvData: DSVParsedArray<UsageEntry> }) => {
     svg.append("g")
       .call(yAxis);
 
-    svg.append("g")
+    const blocks = svg.append("g")
       .selectAll("rect")
       .data(hourlyData)
       .join("rect")
@@ -76,10 +77,10 @@ export default (props: { csvData: DSVParsedArray<UsageEntry> }) => {
       .attr("width", x.bandwidth() - 1)
       .attr("height", y.bandwidth() - 1)
       .attr("fill", d => color(d.usage))
-      .append("title")
+
+    blocks.append("title")
       .text(d => `${d3.timeFormat("%B %-d, %-I %p")(d.date)}
       ${d3.format(".2f")(d.usage)} kW`);
-
 
     document.getElementById('yup').appendChild(svg.node())
   }, [])
