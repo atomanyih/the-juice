@@ -22,15 +22,18 @@ type SuccessResult = {
 export type UsageEntry = {
   date: Date,
   usage: number,
+  cost: number,
 }
 
 const parseData = (d : DSVRowString) : UsageEntry => {
   const usage = +(d["USAGE"] || 0);
+  const cost = +(d["COST"].slice(1)) * 100
   const dateString = `${d["DATE"]}T${d["START TIME"]}`;
   const date = timeParse("%Y-%m-%dT%H:%M")(dateString);
   return {
     date: date ||  new Date(0), // this is whack
-    usage: usage
+    usage: usage,
+    cost: cost
   };
 }
 
